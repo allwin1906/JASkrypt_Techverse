@@ -51,10 +51,13 @@ export default function Internship() {
       { x: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
         scrollTrigger: { trigger: tlRef.current, start: 'top 85%' } });
 
-    gsap.fromTo(tlRef.current?.querySelector('.tl-line-fill'),
-      { scaleY: 0 },
-      { scaleY: 1, duration: 1.5, ease: 'power2.out', transformOrigin: 'top',
-        scrollTrigger: { trigger: tlRef.current, start: 'top 80%' } });
+    const lineFill = tlRef.current?.querySelector('.tl-line-fill');
+    if (lineFill) {
+      gsap.fromTo(lineFill,
+        { scaleY: 0 },
+        { scaleY: 1, duration: 1.5, ease: 'power2.out', transformOrigin: 'top',
+          scrollTrigger: { trigger: tlRef.current, start: 'top 80%' } });
+    }
 
     const perks = perkRef.current?.querySelectorAll('.perk');
     perks && gsap.fromTo(perks,
