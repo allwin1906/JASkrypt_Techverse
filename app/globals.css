@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --bg:        #0a0a0a;
+  --bg-2:      #121212;
+  --bg-3:      #181818;
+  --gold-1:    #d4af37;
+  --gold-2:    #f5d77a;
+  --gold-3:    #9a7d1e;
+  --white:     #ffffff;
+  --grey-1:    #9ca3af;
+  --grey-2:    #4b5563;
+  --border:    rgba(212,175,55,0.2);
+  --border-dim: rgba(255,255,255,0.08);
+}
+
+/* ─── RESET ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Syne', 'Inter', system-ui, sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 700; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 600; }
+p  { color: var(--grey-1); line-height: 1.7; }
+
+/* ─── GOLD GRADIENT TEXT ─────────────────────────────────── */
+.gold-text {
+  background: linear-gradient(115deg, var(--gold-1) 0%, var(--gold-2) 60%, #e8c84a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── SECTION SPACING ────────────────────────────────────── */
+.section-pad  { padding: 100px 0; }
+.section-padL { padding: 120px 0; }
+.container    { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .section-pad, .section-padL { padding: 80px 0; }
+}
+
+/* ─── SECTION LABEL ──────────────────────────────────────── */
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-1);
+  margin-bottom: 24px;
+}
+.label::before {
+  content: '';
+  width: 24px; height: 1.5px;
+  background: linear-gradient(90deg, var(--gold-1), var(--gold-2));
+  border-radius: 1px;
+  display: block;
+}
+
+/* ─── BUTTONS ────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-gold {
+  padding: 14px 32px;
+  background: linear-gradient(120deg, var(--gold-1), var(--gold-2));
+  color: #0a0a0a;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(212,175,55,0.25);
+  background: linear-gradient(120deg, var(--gold-2), var(--gold-1));
+}
+.btn-outline {
+  padding: 13px 31px;
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.2);
+}
+.btn-outline:hover {
+  border-color: var(--gold-1);
+  color: var(--gold-1);
+}
+
+/* ─── CARDS ──────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-dim);
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(212,175,55,0.4);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* ─── GRID BG ────────────────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(212,175,55,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-3); border-radius: 3px; }
+::selection { background: rgba(212,175,55,0.3); color: #fff; }
+
+/* ─── REVEAL DEFAULTS (GSAP overrides) ───────────────────── */
+.will-reveal { opacity: 0; transform: translateY(30px); }
+.will-reveal-left  { opacity: 0; transform: translateX(-30px); }
+.will-reveal-right { opacity: 0; transform: translateX(30px); }
+
+/* ─── CURSOR GLOW ────────────────────────────────────────── */
+#cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.04) 0%, transparent 60%);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: opacity 0.4s;
+}
+
+/* ─── MARQUEE ────────────────────────────────────────────── */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+
+/* ─── RESPONSIVE OVERRIDES ───────────────────────────────── */
+@media (max-width: 1024px) {
+  .proj-card { grid-template-columns: 1fr !important; direction: ltr !important; min-height: auto !important; }
+  .proj-card > div:last-child { border-top: 1px solid rgba(255,255,255,0.06); border-left: none !important; padding: 40px 24px !important; }
+  .proj-card > div:first-child { padding: 48px 40px !important; }
+  
+  [style*="minmax(440px"] { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: clamp(2.2rem, 8vw, 2.5rem) !important; }
+  h2 { font-size: clamp(1.8rem, 7vw, 2.2rem) !important; }
+  .container { padding: 0 20px !important; }
+  .section-pad, .section-padL { padding: 72px 0 !important; }
+  
+  /* Make all padding inside cards smaller for phones */
+  .glass-card { padding: 32px 24px !important; }
+  .proj-card > div:first-child { padding: 32px 24px !important; }
+  
+  /* Buttons */
+  .btn { padding: 12px 24px !important; font-size: 13px !important; width: 100%; justify-content: center; }
+  
+  /* Hero Specific Mobile tweaks */
+  #hero .container { margin-top: 60px; }
+}
